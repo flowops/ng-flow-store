@@ -8,11 +8,18 @@ import { NStore } from 'projects/n-store/src/public-api';
 })
 export class AppComponent {
   title = 'example';
+  val$;
   constructor(private store: NStore<any>) {
+    this.val$ = store.select(state => state );
   }
   
-  change() {
-    this.store.dispatch({type: 'TEST', payload: {work: 'test'}});
+  change1() {
+    this.store.dispatch({type: 'CHANGE', payload: {work2: 'dong work'}});
 
   }
+
+  change2() {
+    this.store.dispatch({type: 'CHANGE', payload: {work2: 'dong work', work3: 'dancing'}});
+  }
+
 }

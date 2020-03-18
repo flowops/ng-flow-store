@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NStoreModule } from 'projects/n-store/src/public-api';
 import { environment } from '../environments/environment';
+import { TestHandlers } from './store/test.handlers';
 
 @NgModule({
   declarations: [
@@ -11,9 +12,11 @@ import { environment } from '../environments/environment';
   ],
   imports: [
     BrowserModule,
-    NStoreModule.forRoot({environment, initialState: {foo: 'bar'}, enableLogging: true})
+    NStoreModule.forRoot({environment, initialState: {foo: {work: 'bar'}}, enableLogging: true})
   ],
-  providers: [],
+  providers: [TestHandlers],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(tet: TestHandlers) {}
+}
