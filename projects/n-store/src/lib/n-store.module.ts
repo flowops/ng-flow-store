@@ -1,11 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { ENVIRONMENT, INITIAL_MANIFEST_STATE } from './constants';
+import { CONFIG, Config } from './constants';
 
 
-interface Config {
-  environment: any;
-  initialState: any;
-}
 
 
 @NgModule({
@@ -19,8 +15,7 @@ export class NStoreModule {
     return {
       ngModule: NStoreModule,
       providers: [
-        {provide: INITIAL_MANIFEST_STATE, useValue: config.initialState},
-        {provide: ENVIRONMENT, useValue: config.environment}
+        {provide: CONFIG, useValue: config},
       ]
     };
   }
