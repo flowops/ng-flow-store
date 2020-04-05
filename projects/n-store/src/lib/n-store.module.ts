@@ -13,7 +13,7 @@ import { StateInjectorService } from './state-injector.service';
 })
 export class NStoreModule {
   static initState = {};
-  static forRoot(config: {environment: any; enableLogging: boolean}): ModuleWithProviders {
+  static forRoot(config: {environment: any; enableLogging: boolean}): ModuleWithProviders<NStoreModule> {
     return {
       ngModule: NStoreModule,
       providers: [
@@ -24,7 +24,7 @@ export class NStoreModule {
     };
   }
 
-  static forFeature(featureName: string, state: any): ModuleWithProviders {
+  static forFeature(featureName: string, state: any): ModuleWithProviders<NStoreModule> {
     // tslint:disable-next-line: no-string-literal
     this.initState[featureName] = state;
     return {
@@ -35,7 +35,7 @@ export class NStoreModule {
     };
   }
 
-  static forManifest(config: {initialState: any}): ModuleWithProviders {
+  static forManifest(config: {initialState: any}): ModuleWithProviders<NStoreModule> {
     // tslint:disable-next-line: no-string-literal
     this.initState['manifest'] = config.initialState;
     return {
