@@ -14,7 +14,7 @@ export class AppComponent {
   }
   
   change1() {
-    this.store.dispatch({type: 'CHANGE', payload: {work2: 'dong work'}});
+    this.store.dispatch({type: 'CHANGE', payload: {work2: () => 'workf'}});
 
   }
 

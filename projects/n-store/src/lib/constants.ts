@@ -5,6 +5,8 @@ export interface Config {
     initialState: any;
     enableLogging?: boolean;
   }
-  
 
-export const CONFIG = new InjectionToken<Config>('CONFIG');
+
+export const ENVIRONMENT = new InjectionToken<any>('ENVIRONMENT');
+export const INITIAL_STATE = new InjectionToken<any>('INITIAL_STATE');
+export const ENABLE_LOGGING = new InjectionToken<boolean>('ENABLE_LOGGING');
