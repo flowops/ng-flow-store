@@ -6,7 +6,8 @@
     "umdModuleIds": {
       "ramda": "ramda",
       "events": "events",
-      "jmespath": "jmespath"
+      "jmespath": "jmespath",
+      "json-templater": "json-templater"
     }
   }
 }

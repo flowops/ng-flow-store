@@ -12,7 +12,7 @@ export class TestHandlers {
     changeHandler = (controller: NStore<any>, action) => {
         const state = controller.getCurrentState();
 
-        controller.updateState({
+        controller.setState({
             ...state,
             foo: action.payload
         });

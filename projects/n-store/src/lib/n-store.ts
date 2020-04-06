@@ -6,6 +6,8 @@ import {path, clone} from 'ramda';
 import { ENABLE_LOGGING, ENVIRONMENT, INITIAL_STATE } from './constants';
 import { Action } from './action.type';
 import * as jmespath from 'jmespath';
+import render from 'json-templater/object';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +17,7 @@ export class NStore<T> {
   private actionStream$ = new BehaviorSubject<any>(null);
   private state$ = new BehaviorSubject<any>(this.initialState);
   currentState = this.initialState;
+  pipe = this.state$.asObservable().pipe;
   constructor(
     @Inject(ENVIRONMENT) private environment: any,
     @Inject(ENABLE_LOGGING) private enableLogging: boolean,
@@ -77,6 +80,20 @@ export class NStore<T> {
     );
   }
 
+  renderTemplate(templateStr: string, queryProps: {[key: string]: string}) {
+    return this.stateObservable.pipe(
+      map(state => {
+        const queryResult = Object.entries(queryProps).reduce((acc, [prop, query]) => {
+          return {
+            ...acc,
+            [prop]: jmespath.search(state, query)
+          };
+        }, {});
+        return render(templateStr, queryResult);
+      })
+    ) ;
+  }
+
 
   dispatch(action: Action | { type: string; payload: any }) {
     const actionType = action.type;
@@ -108,7 +125,4 @@ export class NStore<T> {
     }
   }
 
-  get pipe() {
-    return this.state$.asObservable().pipe;
-  }
 }
