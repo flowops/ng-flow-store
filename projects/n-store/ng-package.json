@@ -5,7 +5,8 @@
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
       "ramda": "ramda",
-      "events": "events"
+      "events": "events",
+      "jmespath": "jmespath"
     }
   }
 }

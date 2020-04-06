@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NStore } from 'projects/n-store/src/public-api';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +11,12 @@ export class AppComponent {
   title = 'example';
   val$;
   constructor(private store: NStore<any>) {
-    this.val$ = store.select(state => state );
+    // this.val$ = store.select(state => state );
+    this.val$ = store.pipe(map(st => st.foo))
   }
   
   change1() {
-    this.store.dispatch({type: 'CHANGE', payload: {work2: () => 'workf'}});
+    this.store.dispatch({type: 'CHANGE', payload: {work2: 'workf'}});
 
   }
 

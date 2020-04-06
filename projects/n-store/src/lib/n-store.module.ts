@@ -1,6 +1,5 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import {  ENVIRONMENT, ENABLE_LOGGING, INITIAL_STATE } from './constants';
-import { StateInjectorService } from './state-injector.service';
 
 
 
@@ -9,7 +8,7 @@ import { StateInjectorService } from './state-injector.service';
   declarations: [],
   imports: [
   ],
-  providers: [StateInjectorService]
+  providers: []
 })
 export class NStoreModule {
   static initState = {};
